@@ -31,20 +31,11 @@ Los datos están en formato csv y contienen los siguientes campos:
 - lng: longitud de la ubicación del listado
 - lat: latitud de la ubicación del listado
 
-## Prepara tu aplicación.
-La aplicación se llamará `app.py`. Añade un `requirements.txt` con las dependencias de tu aplicación. Ve actualizándolo a medida que vayas añadiendo librerías.
-
-## Carga y análisis de conjunto de dato con pandas
-Carga el conjunto de datos en un dataframe de pandas y realiza un análisis exploratorio de los datos.
-
 ## Visualización de los datos
 Prepara visualizaciones diferentes del dataframe en texto (tablas) o gráficas (histogramas, barras, etc.). Puedes usar matplotlib, seaborn, plotly, etc.
 
-## Diseña la interacción que van a tener tus datos
-Qué inputs y outputs tendrán tus datos. 
+Para la visualización de los datos en Streamlit, he utilizado pandas para representar un pie chart con el rango de precios de la selección de alojamientos, plotly express para generar dos histogramas con las valoraciones de limpieza y alojamiento y folium para representar los alojamientos en un mapa.
+He necesitado instalar la versión 0.3.1 de branca para que el mapa tuviera visibilidad.
 
-## Prepara la aplicación (cuadro de mandos) con Streamlit
-Prepara y prueba la aplicación.
-
-## Publica la aplicación.
-Publica la aplicación en Streamlit Cloud, en Heroku o en el servicio que prefieras https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app
+## Publicación de la aplicación.
+La aplicación está publicada en [Streamlit Sharing](https://share.streamlit.io/).
