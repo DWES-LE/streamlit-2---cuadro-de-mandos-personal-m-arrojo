@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import folium
 
-st.set_page_config(page_title="Airbnb Barcelona", page_icon=":house:")
+st.set_page_config(page_title="Airbnb Barcelona", page_icon="🏠")
 
 # Cargar datos
 @st.cache_data()
@@ -22,43 +22,45 @@ room_type_dict = {"Entire home/apt": "Apartamento completo",
                   "Shared room": "Habitación compartida"}
 
 # Filtrar por tipo de alojamiento
+st.sidebar.header("Filtros de búsqueda 🧐")
+
 room_type_options = ["Todos"] + [room_type_dict[value]
                                  for value in data["room_type"].unique()]
-room_type = st.sidebar.selectbox("Tipo de alojamiento", room_type_options)
+room_type = st.sidebar.selectbox("Tipo de alojamiento 🌆", room_type_options)
 if room_type != "Todos":
     data = data[data["room_type"] == room_type]
 
 # Filtrar por capacidad
-capacity = st.sidebar.slider("Capacidad (personas)", 1, 7, 1)
+capacity = st.sidebar.slider("Capacidad 🧑🏼‍🤝‍🧑🏼", 1, 7, 1)
 data = data[data["person_capacity"] >= capacity]
 
 # Filtrar por distancia al centro
-center_dist = st.sidebar.slider("Distancia al centro (km)", 0, 10, 5)
+center_dist = st.sidebar.slider("Distancia al centro (km) 📏", 0, 10, 5)
 data = data[data["dist"] <= center_dist]
 
 # Filtrar por precio
-price = st.sidebar.slider("Precio por noche (€)", 0, 1000, 100)
+price = st.sidebar.slider("Precio por noche (€) 💰", 0, 1000, 100)
 data = data[data["realSum"] <= price]
 
 # Filtrar por superhost
-superhost = st.sidebar.checkbox("Solo de superanfitriones")
+superhost = st.sidebar.checkbox("Solo de superanfitriones 🗝")
 data = data[data["host_is_superhost"] == superhost]
 
 # Filtrar por satisfacción del huésped
-satisfaction = st.sidebar.slider("Satisfacción del huésped", 0, 100, 100)
+satisfaction = st.sidebar.slider("Satisfacción del huésped 🤠", 0, 100, 100)
 data = data[data["guest_satisfaction_overall"] <= satisfaction]
 
-confirma = st.sidebar.button("Confirmar")
+buscar = st.sidebar.button("Buscar 🔍")
 
 
 # Pantalla principal de la aplicación
-st.title("Encuentra tu alojamiento en Barcelona!")
+st.title("Encuentra tu alojamiento en Barcelona! 🏠")
 st.write("¿Estás buscando un Airbnb en Barcelona y ya no sabes por donde mirar? Este cuadro de mandos te permite filtrar los alojamientos por aspectos como el tipo, capacidad, precio, la satisfacción del huésped y más. ¡Prueba a modificar los filtros y descubre dónde puedes alojarte en esta ciudad tan bonita!")
 
-st.caption("Imagen de [D Jonez](https://unsplash.com/@cooljonez?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) en [Unsplash](https://unsplash.com/es/fotos/qiH16d5SRxg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) y datos extraídos de [Zenodo](https://zenodo.org/record/4446043#.Y9Y9ENJBwUE))")
+st.caption("(Imagen de [D Jonez](https://unsplash.com/@cooljonez?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) en [Unsplash](https://unsplash.com/es/fotos/qiH16d5SRxg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) y datos extraídos de [Zenodo](https://zenodo.org/record/4446043#.Y9Y9ENJBwUE))")
 imagen = st.image("barcelona.jpg", use_column_width=True)
 
-if confirma:
+if buscar:
     imagen.empty()
 
     st.sidebar.success("Filtro aplicado")
@@ -92,6 +94,8 @@ if confirma:
         fig_satisfaction = px.histogram(data, x='guest_satisfaction_overall', nbins=20)
         st.write("Distribución de las calificaciones de satisfacción del huésped de los resultados:")
         st.plotly_chart(fig_satisfaction)
+        
+        st.write("¿No te convence ninguno de los resultados? Prueba a modificar los filtros. 👀")
 
     else:
         st.subheader("No se han encontrado resultados :( Prueba a modificar los filtros.")
