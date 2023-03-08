@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from streamlit_folium import folium_static
 import folium
 
 st.set_page_config(page_title="Airbnb Barcelona", page_icon="🏠")
@@ -67,13 +68,19 @@ if buscar:
     # Mostrar mapa con los resultados
     st.header("Resultados de la búsqueda")
     st.write("Échale un vistazo al mapa para ver dónde están los alojamientos que hemos encontrado. Haz click en cada marcador para ver más información sobre el alojamiento.")
+    
     m = folium.Map(location=[41.3879, 2.1699], zoom_start=12)
-
     for i, row in data.iterrows():
         folium.Marker([row["lat"], row["lng"]],
-                      popup=f"Precio por noche: {row['realSum']}€\nTipo de alojamiento: {row['room_type']}\nCapacidad: {row['person_capacity']}").add_to(m)
+                  popup=f"Precio por noche: {row['realSum']}€\nTipo de alojamiento: {row['room_type']}\nCapacidad: {row['person_capacity']}").add_to(m)
 
-    st.write(m)
+    folium_static(m)
+    
+    # m = folium.Map(location=[41.3879, 2.1699], zoom_start=12)
+    # for i, row in data.iterrows():
+    #     folium.Marker([row["lat"], row["lng"]],
+    #                   popup=f"Precio por noche: {row['realSum']}€\nTipo de alojamiento: {row['room_type']}\nCapacidad: {row['person_capacity']}").add_to(m)
+    # st.write(m)
 
     if len(data) > 0:
         # Mostrar resultados en una tabla
