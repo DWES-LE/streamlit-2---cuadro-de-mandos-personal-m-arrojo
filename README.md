@@ -1,9 +1,6 @@
 # 📈 Cuadro de mandos personal 📊
- 
-> Usa este repositorio para crear un cuadro de mandos personal con Streamlit. Documenta los siguientes apartados del README.
-> Incluye en tu README la url de donde has publicado tu aplicación. Pon la `url` también en el `About` de tu repositorio.
 
-## Objetivo
+## Introducción
 Diseño de un cuadro de mandos personal para visualización e interacción con un conjunto de datos.
 He escogido realizar mi trabajo sobre los alojamientos Airbnb en Barcelona. El cuadro de mandos permite filtrar por opciones y representa los alojamientos en un mapa.
 
@@ -32,10 +29,7 @@ Los datos están en formato csv y contienen los siguientes campos:
 - lat: latitud de la ubicación del listado
 
 ## Visualización de los datos
-Prepara visualizaciones diferentes del dataframe en texto (tablas) o gráficas (histogramas, barras, etc.). Puedes usar matplotlib, seaborn, plotly, etc.
-
-Para la visualización de los datos en Streamlit, he utilizado pandas para representar un pie chart con el rango de precios de la selección de alojamientos, plotly express para generar dos histogramas con las valoraciones de limpieza y alojamiento y folium para representar los alojamientos en un mapa.
-He necesitado instalar la versión 0.3.1 de branca para que el mapa tuviera visibilidad.
+Para la visualización de los datos en Streamlit, he utilizado pandas para representar un pie chart con el rango de precios de la selección de alojamientos, plotly express para generar dos histogramas con las valoraciones de limpieza y alojamiento y streamlit-folium para representar los alojamientos en un mapa.
 
 ## Publicación de la aplicación.
-La aplicación está publicada en [Streamlit Sharing](https://share.streamlit.io/).
+Puedes acceder a la aplicación [aquí](https://m-arrojo-streamlit-2---cuadro-de-mandos-personal-m-a-app-3msj37.streamlit.app).
